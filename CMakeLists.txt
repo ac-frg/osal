@@ -13,12 +13,11 @@
 # full license information.
 #*******************************************************************/
 
-cmake_minimum_required (VERSION 3.14)
+cmake_minimum_required (VERSION 3.7.2)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/tools")
 project (OSAL VERSION 0.1.0)
 
-include(GetGitRevision)
+include(GNUInstallDirs)
 
 # Default settings if this is the main project
 if (CMAKE_PROJECT_NAME STREQUAL OSAL)
@@ -73,8 +72,7 @@ set_target_properties (osal
   PROPERTIES
   C_STANDARD 99
   )
-
-target_compile_features(osal PUBLIC c_std_99)
+set_property(TARGET osal PROPERTY C_STANDARD 99)
 
 target_include_directories(osal
   PUBLIC
@@ -88,12 +86,13 @@ target_include_directories(osal
 install(
   TARGETS osal
   EXPORT OsalTargets
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   )
 
 install(
   EXPORT OsalTargets
   FILE OsalConfig.cmake
-  DESTINATION cmake
+  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake
   )
 
 install(FILES

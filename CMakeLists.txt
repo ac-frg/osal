@@ -65,6 +65,11 @@ if (CMAKE_PROJECT_NAME STREQUAL OSAL AND BUILD_TESTING)
   add_executable(osal_test "")
 endif()
 
+# compile with the ac logging code
+if (BUILD_WITH_AC_LOGGING)
+  add_definitions(-DBUILD_WITH_AC_LOGGING)
+endif()
+
 # Platform configuration
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/${CMAKE_SYSTEM_NAME}.cmake)
 
@@ -100,6 +105,14 @@ install(FILES
   include/osal_log.h
   DESTINATION include
   )
+
+# install ac log header only when requested
+if (BUILD_WITH_AC_LOGGING)
+  install(FILES
+    include/osal_ac_log.h
+    DESTINATION include
+    )
+endif()
 
 if (CMAKE_PROJECT_NAME STREQUAL OSAL AND BUILD_TESTING)
   add_subdirectory (test)

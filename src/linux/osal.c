@@ -16,6 +16,7 @@
 #define _GNU_SOURCE /* For pthread_setname_mp() */
 
 #include "osal.h"
+#include "osal_log.h"
 /* #include "options.h" */
 
 #include <stdarg.h>
@@ -86,6 +87,17 @@ os_thread_t * os_thread_create (
 
    pthread_setname_np (*thread, name);
    return thread;
+}
+
+int os_thread_join (os_thread_t * thread)
+{
+   void * retval;
+   return pthread_join (*thread, &retval);
+}
+
+void os_thread_destroy (os_thread_t * thread)
+{
+   free (thread);
 }
 
 os_mutex_t * os_mutex_create (void)

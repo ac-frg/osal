@@ -89,6 +89,9 @@ os_thread_t * os_thread_create (
    void (*entry) (void * arg),
    void * arg);
 
+int os_thread_join(os_thread_t *thread);
+void os_thread_destroy(os_thread_t *thread);
+
 os_mutex_t * os_mutex_create (void);
 void os_mutex_lock (os_mutex_t * mutex);
 void os_mutex_unlock (os_mutex_t * mutex);

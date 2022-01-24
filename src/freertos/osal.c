@@ -54,6 +54,17 @@ os_thread_t * os_thread_create (
    }
 }
 
+int os_thread_join(os_thread_t *thread)
+{
+   /* TODO */
+   return 0;
+}
+
+void os_thread_destroy(os_thread_t *thread)
+{
+   /* TODO */
+}
+
 os_mutex_t * os_mutex_create (void)
 {
    SemaphoreHandle_t handle = xSemaphoreCreateRecursiveMutex();

@@ -65,6 +65,17 @@ os_thread_t * os_thread_create (
    return handle;
 }
 
+int os_thread_join(os_thread_t *thread)
+{
+   /* TODO */
+   return 0;
+}
+
+void os_thread_destroy(os_thread_t *thread)
+{
+   /* TODO */
+}
+
 uint32_t os_get_current_time_us (void)
 {
    return GetTickCount() * 1000;
